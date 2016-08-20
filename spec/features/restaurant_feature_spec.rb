@@ -8,4 +8,16 @@ feature 'restaurants' do
       expect(page).to have_link 'Add a restaurant'
     end
   end
+
+  context 'restaurants have been added' do
+    before do
+      Restaurant.create( name: 'Appy Cafe')
+    end
+
+    scenario 'display restaurants' do
+      visit '/restaurants'
+      expect(page).to have_content('Appy Cafe')
+      expect(page).not_to have_content('No restaurants yet')
+    end
+  end
 end
