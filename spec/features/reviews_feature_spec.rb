@@ -12,4 +12,10 @@ feature 'reviewing' do
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content('so so')
   end
+
+  scenario 'displays average rating' do
+    leave_review('soso', 3)
+    leave_review('Great', 5)
+    expect(page).to have_content('Average rating: 4')
+  end
 end
